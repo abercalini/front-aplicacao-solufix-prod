@@ -1,0 +1,50 @@
+  <br>
+  <br>
+  <form #p="ngForm" (ngSubmit)="verificarSalvarOuEditar(p)" enctype="multipart/form-data">
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <h1 style="color: red; text-align: center;">{{isEditando() ? 'Edição de Produto' : 'Cadastro de Produto'}}</h1>
+      </div>
+      <div class="ui-g-12 ui-m-12 ui-fluid">
+        <label>Foto *</label>
+        <input type="file" (change)="inputFileSelectd($event)">
+      </div>
+      <div class="ui-g-12 ui-md-12 ui-fluid">
+          <label>Nome *</label>
+          <input type="text" pInputText name="nome" [(ngModel)]="produto.nome" required>
+      </div>
+      <div class="ui-g-12 ui-md-12 ui-fluid">
+        <label>Descrição</label>
+        <textarea [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize" name="descricao" [(ngModel)]="produto.descricao"></textarea>
+      </div>
+
+     <!-- <div class="ui-g-12 ui-fluid">
+        <label>Cod de barra *</label>
+        <input type="text" pInputText name="codigoBarra" [(ngModel)]="produto.codigoBarra" required/>
+      </div> -->
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Observação</label>
+        <input type="text" pInputText name="observacao" [(ngModel)]="produto.observacao">
+      </div>
+
+
+      <div class="ui-g-12 ui-md-12 ui-fluid">
+        <label>Categoria *</label>
+        <p-dropdown [options]="categorias" [(ngModel)]="produto.categoria.codigo"
+          name="categoria" [filter]="true" placeholder="Selecione..." required></p-dropdown>
+      </div>
+
+      <div class="ui-g-12 ui-md-2 ui-fluid">
+          <button pButton type="submit" label="Salvar" style="background-color: green;"
+            icon="ui-icon-save" [disabled]="!p.valid"></button>
+      </div>
+      <div class="ui-g-12 ui-md-2 ui-fluid">
+          <button pButton type="reset" label="Novo" icon="ui-icon-refresh"></button>
+      </div>
+      <div class="ui-g-12 ui-md-3 ui-fluid">
+        <a routerLink="/produto">Pesquisar Produto</a>
+      </div>
+
+    </div>
+  </form>
